@@ -1,3 +1,11 @@
+# Steps to run TBRNet on KITTI dataset
+1. Download the KITTI dataset from [here](https://www.cvlibs.net/datasets/kitti/eval_odometry.php)
+2. Download pre-trained model from [here](https://mailustceducn-my.sharepoint.com/:u:/g/personal/nachifur_mail_ustc_edu_cn/EW7n1zFH2FpBvjvfNC0mrcMB45n6aUocl81EhOokZDLMeA?e=409Tiu). Rename and place it at `./checkpoints/ISTD/ShadowRemoval.pth`.
+3. Change the path of dataset (`DATA_ROOT` and `TEST_FLIST`) in `./checkpoints/ISTD/config.yml` to the path of KITTI dataset.
+4. Set the resolution of the images in `./checkpoints/ISTD/config.yml` if needed. Large resolution images may not fit in the GPU memory.
+4. `python run.py` to run the model on KITTI dataset.
+
+
 # TBRNet
 
 <img src="https://github.com/nachifur/TBRNet/blob/main/img/f2.jpg"/>

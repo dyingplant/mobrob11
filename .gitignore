@@ -1,3 +1,4 @@
 /ISTD_Dataset_arg
-checkpoints/ISTD
+checkpoints/ISTD/results
+*.pth
 *.pyc

@@ -447,6 +447,8 @@ class ModelTop():
         index = 0
         with torch.no_grad():
             for items in test_loader:
+                if index % 10 == 0:
+                    print('Testing %d/%d' % (index, len(self.test_dataset)))
                 name = self.test_dataset.load_name(index)
                 index += 1
                 images, mask, GT = self.cuda(

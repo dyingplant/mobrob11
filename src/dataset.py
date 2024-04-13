@@ -58,7 +58,13 @@ class Dataset(torch.utils.data.Dataset):
         mask_GT = cv2.imread(self.mask[index], -1)
         GT = cv2.imread(self.GT[index], -1)
 
+        img = cv2.resize(img, (size_w, size_h), interpolation=cv2.INTER_CUBIC)
+        mask_GT = cv2.resize(mask_GT, (size_w, size_h),
+                             interpolation=cv2.INTER_CUBIC)
+        GT = cv2.resize(GT, (size_w, size_h), interpolation=cv2.INTER_CUBIC)
+
         # augment data
+        # print("is augment", self.augment) # False
         if self.augment:
             img, mask_GT, GT = self.data_augment(
                 img, mask_GT, GT)
@@ -69,8 +75,14 @@ class Dataset(torch.utils.data.Dataset):
                 mask_GT = self.resize(mask_GT, size_h, size_w)
                 GT = self.resize(GT, size_h, size_w)
 
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        GT = cv2.cvtColor(GT, cv2.COLOR_BGR2RGB)
+        if len(img.shape) < 3:
+            # gray img
+            img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
+            GT = cv2.cvtColor(GT, cv2.COLOR_GRAY2RGB)
+        else:
+            # color img
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            GT = cv2.cvtColor(GT, cv2.COLOR_BGR2RGB)
 
         # imshow(Image.fromarray(edge_truth))
         return self.to_tensor(img), self.to_tensor(mask_GT), self.to_tensor(GT)
