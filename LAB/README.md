@@ -11,3 +11,5 @@ Tested for Python 3.7. Requires (might also work with older versions):
 "Shadow detection and removal from a single image using LAB color space."   
 Cybernetics and information technologies 13.1 (2013): 95-103.
 
+1) Download all dependencies
+2) Follow the LAB.ipynb jupyter notebook to remove shadows from your image
